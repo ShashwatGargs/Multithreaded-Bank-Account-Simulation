@@ -1,145 +1,154 @@
-Multithreaded Bank Account Simulation (Java)
-Overview
+# 💰 Multithreaded Bank Account Simulation (Java)
 
-This project is a multithreaded banking simulation implemented in Java. It demonstrates how multiple users (threads) can safely perform deposit and withdrawal operations on a shared bank account using proper thread synchronization.
+## 📌 Overview
 
-Real-life analogy:
-Imagine a single bank account accessed by multiple ATM machines at the same time. Without coordination, balances could become incorrect. This project shows how Java ensures that only one ATM updates the balance at a time.
+This project is a **multithreaded banking simulation** built in Java. It demonstrates how multiple users (threads) can safely perform **deposit** and **withdrawal** operations on a shared bank account using proper synchronization techniques.
 
-Key Concepts Demonstrated
+**Real-life analogy:**
+Think of a single bank account accessed by multiple ATMs at the same time. Without coordination, transactions could overlap and corrupt the balance. This system ensures that only one transaction updates the account at a time.
 
-Multithreading in Java
+---
 
-Thread synchronization
+## 🧠 Key Concepts Demonstrated
 
-Race condition prevention
+* Multithreading in Java
+* Thread synchronization
+* Race condition prevention
+* Shared resource management
+* Object-oriented programming (OOP)
 
-Shared resource management
+---
 
-Object-oriented design
+## 🛠️ Tech Stack
 
-Tech Stack
+* **Language:** Java
+* **Core Concepts:**
 
-Language: Java
+  * Threads
+  * `synchronized` methods / blocks
+  * OOP principles
 
-Core Concepts:
+---
 
-Threads
+## 📁 Project Structure
 
-synchronized methods / blocks
-
-OOP principles
-
-Project Structure
+```
 Multithreaded-Bank-Account/
 │
-├── BankAccount.java        # Shared bank account (critical resource)
-├── UserTransaction.java    # Thread representing a user transaction
-├── Main.java               # Entry point of the application
-└── README.md               # Documentation
+├── BankAccount.java       # Shared bank account (critical resource)
+├── UserTransaction.java   # Thread representing a user transaction
+├── Main.java              # Entry point of the application
+└── README.md              # Documentation
+```
 
-How the System Works
+---
 
-A single BankAccount object is created
+## ⚙️ How the System Works
 
-Multiple UserTransaction threads are spawned
+1. A single `BankAccount` object is created
+2. Multiple `UserTransaction` threads are initialized
+3. Each thread performs either:
 
-Each thread performs either:
+   * Deposit
+   * Withdrawal
+4. Synchronization ensures that only one thread modifies the balance at a time
 
-Deposit
+**Analogy:**
+Only one person is allowed inside the bank vault at a time. Others must wait until it becomes available.
 
-Withdrawal
+---
 
-Synchronization ensures balance consistency
+## 🧩 Class Responsibilities
 
-Analogy:
-Only one person is allowed inside the bank vault at a time. Others must wait until the vault is free.
+### 🔹 BankAccount.java
 
-Class Responsibilities
-BankAccount.java
+* Maintains account balance
+* Provides synchronized methods:
 
-Maintains the account balance
+  * `deposit()`
+  * `withdraw()`
+* Ensures thread-safe updates
 
-Provides synchronized methods for:
+---
 
-deposit()
+### 🔹 UserTransaction.java
 
-withdraw()
+* Represents a user transaction using threads
+* Handles:
 
-Prevents inconsistent balance updates
+  * Transaction type (deposit/withdraw)
+  * Transaction amount
+  * Target bank account
 
-UserTransaction.java
+---
 
-Implements or extends Thread
+### 🔹 Main.java
 
-Represents a user performing a transaction
+* Entry point of the application
+* Creates:
 
-Knows:
+  * Shared `BankAccount` object
+  * Multiple `UserTransaction` threads
+* Starts threads to simulate concurrent execution
 
-Transaction type (deposit/withdraw)
+---
 
-Amount
-
-Target bank account
-
-Main.java
-
-Application entry point
-
-Creates:
-
-Shared BankAccount
-
-Multiple UserTransaction threads
-
-Starts all threads to simulate concurrency
-
-Why Synchronization Is Important
+## ⚠️ Why Synchronization Is Important
 
 Without synchronization:
 
-Two withdrawals may read the same balance
+* Multiple threads may access the same balance simultaneously
+* Transactions may overwrite each other
+* Final balance becomes inconsistent
 
-Money could be withdrawn twice
+**Analogy:**
+If two cashiers withdraw money from the same drawer without coordination, the balance becomes incorrect.
 
-Final balance becomes incorrect
+---
 
-Analogy:
-If two cashiers give money from the same drawer without checking updates, cash disappears.
+## ▶️ How to Run the Project
 
-How to Run the Project
-Compile
+### 🔧 Compile
+
+```bash
 javac Main.java
+```
 
-Run
+### ▶️ Run
+
+```bash
 java Main
+```
 
-Sample Output
-User 1 deposited 500
-User 2 withdrew 300
+---
+
+## 📊 Sample Output
+
+```
+User 1 deposited 500  
+User 2 withdrew 300  
 Final Balance: 1200
+```
 
+> ⚠️ Output may vary due to thread scheduling.
 
-(Actual output may vary due to thread scheduling)
+---
 
-Learning Outcomes
+## 🎯 Learning Outcomes
 
-Practical understanding of Java concurrency
+* Understanding Java concurrency fundamentals
+* Writing thread-safe classes
+* Managing shared resources effectively
+* Simulating real-world banking scenarios
 
-Handling shared resources safely
+---
 
-Writing thread-safe classes
+## 🚀 Future Enhancements
 
-Real-world simulation of banking systems
+* Add transaction history logging
+* Support multiple bank accounts
+* Use `ExecutorService` for thread management
+* Implement `ReentrantLock` instead of `synchronized`
+* Add validation for insufficient balance
 
-Possible Enhancements
-
-Add transaction logs
-
-Support multiple bank accounts
-
-Introduce thread pools
-
-Add exception handling for insufficient balance
-
-Implement ReentrantLock instead of synchronized
+##
